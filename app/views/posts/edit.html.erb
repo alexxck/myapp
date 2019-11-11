@@ -1,6 +1,8 @@
-<h1>Editing Post</h1>
+<h1 class="badge badge-secondary">Editing Post</h1>
 
+<div class="input-group-text">
 <%= render 'form', post: @post %>
+</div>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to 'Show', @post, :class => "btn btn-primary" %> |
+<%= link_to 'Back', posts_path, :class => "btn btn-primary" %>

@@ -4,13 +4,17 @@
     <title>Myapp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <h1 class="badge badge-secondary">Hello, Rails blog!</h1>
+      <%= yield %><!-- Content here -->
+    </div>
+
   </body>
 </html>
