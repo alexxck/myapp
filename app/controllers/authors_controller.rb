@@ -71,7 +71,7 @@ class AuthorsController < ApplicationController
   def author_params
     params.require(:author).permit(:first_name, :last_name, :gender, :birthday)
   end
-
+=begin
   def first_name:string
   end
 
@@ -83,4 +83,5 @@ class AuthorsController < ApplicationController
 
   def birthday:date
   end
+=end
 end

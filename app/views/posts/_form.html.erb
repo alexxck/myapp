@@ -28,7 +28,7 @@
 
     <div class="control-group">
       <%= form.label :author %><br>
-      <%= form.select :author, options_for_select(Author.all.map{|t| [(t.first_name) +" "+ (t.last_name), t.id]}), :prompt => 'select author' %>
+      <%= form.select :author, options_for_select(Author.all.map{|t| [(t.first_name) +" "+ (t.last_name)]}), :prompt => 'select author' %>
     </div>
 
     <div class="actions">
