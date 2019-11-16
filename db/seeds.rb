@@ -10,7 +10,7 @@
   author = Author.create([{
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
-      gender: Faker::Gender.type,
+      gender: Faker::Gender.binary_type,
       birthday: Faker::Date.birthday
       }])
 end
