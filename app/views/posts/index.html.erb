@@ -18,7 +18,7 @@
         <td><%= post.name %></td>
         <td><%= post.title %></td>
         <td><%= post.content %></td>
-        
+
         <td><%= link_to 'Show', post, class: "btn btn-primary" %></td>
         <td><%= link_to 'Edit', edit_post_path(post), :class => "btn btn-primary" %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-primary" %></td>
