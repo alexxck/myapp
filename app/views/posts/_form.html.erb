@@ -12,26 +12,31 @@
   <% end %>
   <div class="form-group">
     <div class="field">
+      <i class="fas fa-user"></i>
       <%= form.label :name %>
       <%= form.text_field :name %>
     </div>
 
     <div class="field">
+      <i class="fab fa-tumblr"></i>
       <%= form.label :title %>
       <%= form.text_field :title %>
     </div>
 
     <div class="control-group">
+      <i class="far fa-sticky-note"></i>
       <%= form.label :content %>
       <%= form.text_area :content %>
     </div>
 
     <div class="control-group">
+      <i class="fas fa-pen-square"></i>
       <%= form.label :author %><br>
       <%= form.collection_select(:author_id, Author.all, :id, :full_name, class:'form-control') %>
     </div>
 
     <div class="field">
+      <i class="far fa-image"></i>
       <%= form.label :image %>
       <%= form.file_field :image %>
     </div>
