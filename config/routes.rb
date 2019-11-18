@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'posts#index' # set start page localhost:3000
   get 'posts', to: "posts#index"
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
   resources :authors
   #get 'authors/first_name:string'
   #get 'authors/last_name:string'
