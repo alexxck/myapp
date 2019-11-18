@@ -28,7 +28,7 @@
 
     <div class="control-group">
       <%= form.label :author %><br>
-      <%= form.collection_select(:author_id, Author.all, :id, :first_name) %>
+      <%= form.collection_select(:author_id, Author.all, :id, :full_name, class:'form-control') %>
     </div>
 
     <div class="field">
