@@ -1,5 +1,7 @@
-<p><%= comment.name %></p>
-<p><%= comment.body %></p>
-<p><%= time_ago_in_words(comment.created_at) %></p>
+<div class="card">
+<p><i class="fas fa-user"></i> Name: <%= comment.name %></p>
+<p><i class="far fa-comment"></i> Comment: <%= comment.body %></p>
+<p><i class="far fa-clock"></i> Time: <%= time_ago_in_words(comment.created_at) %></p>
 
-<p><%= link_to 'Delete',[comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+<p><%= link_to 'Delete',[comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-danger' %></p>
+</div>

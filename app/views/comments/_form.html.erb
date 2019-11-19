@@ -1,3 +1,4 @@
+<div class="container">
 <%= form_for([@post, @post.comments.build]) do |f| %>
   <p>
     <%= f.label :name %>
@@ -9,6 +10,7 @@
   </p>
 <br>
   <p>
-    <%= f.submit %>
+    <%= f.submit({:class => 'btn btn-success'}) %>
   </p>
 <% end %>
+</div>

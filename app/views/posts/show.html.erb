@@ -1,4 +1,4 @@
-<div class="container">
+<div class="card">
 
   <p class="text-dark" id="notice"><%= notice %></p>
 
@@ -31,8 +31,8 @@
   <%= render @post.comments %>
   <h3>Add a Comments:</h3>
   <%= render 'comments/form' %>
+</div>
 <br>
   <%= link_to 'Edit', edit_post_path(@post), :class => "btn btn-primary"%> |
   <%= link_to 'Back', posts_path, :class => "btn btn-primary" %>
 
-</div>
