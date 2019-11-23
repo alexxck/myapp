@@ -1,12 +1,22 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'sessions/new'
+  get 'sessions/create'
+  get 'sessions/destroy'
   root 'posts#index' # set start page localhost:3000
   get 'posts', to: 'posts#index'
   resources :posts do
     resources :comments
   end
   resources :authors
+  resources :sessions, only: [:new, :create, :destroy]
+  get '/signup', to: 'authors#new', as: 'signup'
+  get 'login', to: 'sessions#new', as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
+
+
+
   # get 'authors/first_name:string'
   # get 'authors/last_name:string'
   # get 'authors/gender:string'

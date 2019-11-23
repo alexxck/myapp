@@ -55,6 +55,7 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'bootstrap', '~> 4.3.1'
 gem 'carrierwave', '~> 2.0', '>= 2.0.2'
 gem 'font-awesome-sass', '~> 5.11.2'
