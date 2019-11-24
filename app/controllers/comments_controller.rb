@@ -4,10 +4,11 @@ class CommentsController < ApplicationController
   before_action :find_post
 
   def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.create(params[:comment].permit(:name, :body))
+    @comment = @post.comments.create(comment_params)
     @comment.author_id = current_user.id
     respond_to do |format|
+      #dev, del later
+      # ##############
       if @comment.save
         format.html { redirect_to @post, notice: 'good' }
       else
@@ -33,6 +34,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:comment, :author_id, :name)
+    params.require(:comment).permit(:body, :author_id, :name)
   end
 end
