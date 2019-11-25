@@ -2,10 +2,14 @@
 <p><i class="fas fa-user"></i> Name: <%= comment.author.full_name %></p>
 <p><i class="far fa-comment"></i> Comment: <%= comment.body %></p>
 <p><i class="far fa-clock"></i> Time ago: <%= distance_of_time_in_words(comment.created_at, Time.now, include_seconds: false) %></p>
+  <% if updated(@post) %>
+    <p><strong>Updated!</strong></p>
+  <% end  %>
 <p><% if current_user %>
     <% if current_user.id == comment.author_id or @current_user.admin == true %></p>
-      <%link_to 'Destroy comment', [comment.post,comment], method: :delete,
+      <%= link_to 'Destroy comment', [comment.post,comment], method: :delete,
       data: { confirm: 'Are you sure?', class:'btn btn-sm btn-outline-danger'}%>
+      <%= link_to "Edit", edit_post_comment_path(comment.post, comment) %>
     <% end %>
   <% end %>
 </div>
