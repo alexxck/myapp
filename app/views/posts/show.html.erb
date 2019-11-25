@@ -33,6 +33,9 @@
   <%= render 'comments/form' %>
 </div>
 <br>
-  <%= link_to 'Edit', edit_post_path(@post), :class => "btn btn-primary"%> |
-  <%= link_to 'Back', posts_path, :class => "btn btn-primary" %>
-
+<% if current_user %>
+  <% if @post.author_id == @current_user.id or @current_user.admin == true %>
+    <%= link_to 'Edit', edit_post_path(@post), :class => "btn btn-primary"%> |
+    <%= link_to 'Back', posts_path, :class => "btn btn-primary" %>
+  <% end %>
+<% end %>
