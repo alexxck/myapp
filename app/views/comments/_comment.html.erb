@@ -6,9 +6,10 @@
     <p><strong>Updated!</strong></p>
   <% end  %>
 <p><% if current_user %>
-    <% if current_user.id == comment.author_id or @current_user.admin == true %></p>
-      <%= link_to 'Destroy comment', [comment.post,comment], method: :delete,
-      data: { confirm: 'Are you sure?', class:'btn btn-sm btn-outline-danger'}%>
+    <% if check_comment_rights(@current_user,comment) %></p>
+      <%= link_to 'Destroy Comment', [comment.post, comment],
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' }, class:'btn btn-sm btn-outline-danger' %>
       <%= link_to "Edit", edit_post_comment_path(comment.post, comment) %>
     <% end %>
   <% end %>

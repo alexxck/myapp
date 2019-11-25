@@ -12,4 +12,10 @@ module ApplicationHelper
   def updated(sample)
     true if sample.updated_at.to_s != sample.created_at.to_s
   end
+
+  def check_comment_rights(current_user, comment)
+    if (current_user.id == comment.author_id && Time.now - comment.created_at < 3600) or current_user.admin == true
+      true
+    end
+  end
 end
