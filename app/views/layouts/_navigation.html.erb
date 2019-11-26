@@ -1,9 +1,10 @@
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
   <h5 class="my-0 mr-md-auto font-weight-normal">AleXX_ck RoR blog</h5>
   <nav class="my-2 my-md-0 mr-md-3">
+    <%= render 'layouts/search' %>
     <%= link_to 'Home', posts_path, :class => "btn btn-outline-primary" %>
     <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
-    <% if current_user %>
+      <% if current_user %>
       Logged in as <%= current_user.email %>.
       <%= link_to 'Log Out', logout_path %>
     <% else %>
