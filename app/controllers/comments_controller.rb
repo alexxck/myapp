@@ -6,8 +6,6 @@ class CommentsController < ApplicationController
   before_action :find_comment, only: %i[show edit update]
   before_action :owner, only: %i[edit update destroy]
 
-
-
   def create
     @comment = @post.comments.create(comment_params)
     @comment.author_id = current_user.id
@@ -30,7 +28,7 @@ class CommentsController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def destroy
     @comment = @post.comments.find(params[:id])
     if (@current_user.id == @comment.author_id) || (@current_user.admin == true)
@@ -46,7 +44,7 @@ class CommentsController < ApplicationController
   private
 
   def owner
-    if (@comment.author_id == @current_user.id) or (@current_user.admin == true)
+    if (@comment.author_id == @current_user.id) || (@current_user.admin == true)
     else
       redirect_to login_path
       # add some flash mess instead, dont forget

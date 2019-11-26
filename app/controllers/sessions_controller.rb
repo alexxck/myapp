@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   def new; end
 
   def create
-
     author = Author.find_by_email(params[:email])
-    if author && author.authenticate(params[:password])
+    if author&.authenticate(params[:password])
       session[:author_id] = author.id
       redirect_to root_path, notice: 'Logged in!'
     else

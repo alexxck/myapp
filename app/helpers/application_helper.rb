@@ -14,12 +14,12 @@ module ApplicationHelper
   end
 
   def check_comment_rights(current_user, comment)
-    if (current_user.id == comment.author_id && Time.now - comment.created_at < 3600) or current_user.admin == true
+    if (current_user.id == comment.author_id && Time.now - comment.created_at < 3600) || (current_user.admin == true)
       true
     end
   end
 
   def pop_up
-    true if cookies[:"actions"] % 5 == 0
+    true if cookies[:actions] % 5 == 0
   end
 end

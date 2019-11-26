@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SessionsHelper
   def current_author
     if session[:Author_id]
