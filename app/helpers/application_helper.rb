@@ -18,4 +18,8 @@ module ApplicationHelper
       true
     end
   end
+
+  def pop_up
+    true if cookies[:"actions"] % 5 == 0
+  end
 end

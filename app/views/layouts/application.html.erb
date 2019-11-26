@@ -11,10 +11,19 @@
   </head>
 
   <body>
+  <% if pop_up and current_user == nil %>
+    <script> alert('You are not logged in. Please signup or login. ');</script>
+  <% end %>
+
   <%= render 'layouts/navigation' %>
 
     <div class="container">
       <h1 class="badge badge-secondary">Hello, Rails blog!</h1>
+      <div><%= form_tag(posts_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+        <%= submit_tag "Search" %>
+      <% end %>
+      </div>
       <%= yield %><!-- Content here -->
     </div>
 

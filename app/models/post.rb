@@ -9,4 +9,9 @@ class Post < ApplicationRecord
   has_one_attached :image, dependent: :destroy
   mount_uploader :image, ImageUploader
   is_impressionable
+
+  def self.search(search)
+    where("title LIKE ?", "%#{search}%")
+    where("content LIKE ?", "%#{search}%")
+  end
 end

@@ -10,6 +10,11 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = Post.all.order('created_at DESC')
+    if params[:search]
+      @posts = Post.search(params[:search]).order("created_at DESC")
+    else
+      @posts = Post.all.order('created_at DESC')
+    end
   end
 
   def show
