@@ -2,7 +2,11 @@
 
   <p class="text-dark" id="notice"><%= notice %></p>
 
-
+  <p class="text-dark">
+    <i class="fas fa-pen-square"></i>
+    <strong>Author:</strong>
+    <%= @post.author.full_name %>
+  </p>
 
   <p class="text-dark">
     <i class="fab fa-tumblr"></i>
@@ -16,8 +20,15 @@
     <%= @post.content %>
   </p>
 
-  <div>
+  <p>
+    <i class="far fa-clock"></i>
+    <time>
+    Date: <%= @post.created_at.to_date.strftime("%d %B %Y") %><br>
+    Time ago: <%= distance_of_time_in_words(@post.created_at, Time.now) %>
+    </time>
+  </p>
 
+  <div>
     <%= link_to(image_tag(@post.image.url, alt: 'Image'), @post.image.url, target: '_blank') if @post.image? %>
   </div>
 <br>
