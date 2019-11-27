@@ -2,14 +2,14 @@
 <p><i class="far fa-comment"></i> Comment: <%= comment.body %></p>
 <p><i class="far fa-clock"></i> Time ago: <%= distance_of_time_in_words(comment.created_at, Time.now, include_seconds: false) %></p>
   <% if updated(@post) %>
-    <p><strong>Updated!</strong></p>
+    <em> edited!</em>
   <% end  %>
 <p><% if current_user %>
     <% if check_comment_rights(@current_user,comment) %></p>
       <%= link_to 'Destroy Comment', [comment.post, comment],
                   method: :delete,
                   data: { confirm: 'Are you sure?' }, class:'btn btn-sm btn-outline-danger' %>
-      <%= link_to "Edit", edit_post_comment_path(comment.post, comment) %>
+      <%= link_to "Edit", edit_post_comment_path(comment.post, comment), class:'btn btn-sm btn-outline-success'%>
     <% end %>
   <% end %>
 </div>

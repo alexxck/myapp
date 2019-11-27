@@ -1,10 +1,10 @@
 <div class="card">
 <p id="notice"><%= notice %></p>
 
-<h1 class="badge badge-secondary">Posts</h1>
+<h1 class="lead center">Posts</h1>
 
-<table class="table-bordered">
-  <thead>
+<table class="table table-hover">
+  <thead class="thead-dark">
     <tr>
       <th><i class="fas fa-pen-square"></i> Author</th>
       <th><i class="fab fa-tumblr"></i> Title</th>
@@ -21,9 +21,9 @@
         <td><%= post.title %></td>
         <td><%= post.content %></td>
         <td><%= post.impressionist_count %></td>
-        <td><%= link_to 'Show', post, class: "btn btn-primary" %></td>
-        <td><%= link_to 'Edit', edit_post_path(post), :class => "btn btn-primary" %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-primary" %></td>
+        <td><%= link_to 'Show', post, class: "btn btn-outline-primary" %></td>
+        <td><%= link_to 'Edit', edit_post_path(post), :class => "btn btn-outline-primary" %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-outline-primary" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,6 +31,6 @@
 
 <br>
 
-<%= link_to 'New Post', new_post_path, :class => "btn btn-primary" %>
+<%= link_to 'New Post', new_post_path, :class => "btn btn-primary", :style => 'margin-bottom: 50px' %>
 
 </div>
