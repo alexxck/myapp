@@ -9,7 +9,7 @@
       Logged in as <%= current_user.email %>.
       <%= link_to 'Log Out', logout_path, :class => "btn btn-outline-primary" %>
     <% else %>
-      <%= link_to 'Sign Up', signup_path,:class => "btn btn-outline-primary" %> or
+      <%= link_to 'Register', signup_path,:class => "btn btn-outline-primary" %> or
       <%= link_to 'Log In', login_path,:class => "btn btn-outline-primary" %>
     <% end %>
   </nav>

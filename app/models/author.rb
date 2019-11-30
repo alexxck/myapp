@@ -18,6 +18,6 @@ class Author < ApplicationRecord
   validates :password, presence: true, length: { minimum: 8 }, format: { with: PASSWORD_FORMAT }
 
   def full_name
-    "#{first_name} #{last_name}"
+    "#{first_name.capitalize} #{last_name.capitalize}"
   end
 end
