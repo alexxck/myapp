@@ -2,6 +2,7 @@
 
 class Author < ApplicationRecord
   has_secure_password
+  acts_as_voter
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   before_save { self.email = email.downcase }

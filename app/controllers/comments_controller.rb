@@ -3,8 +3,15 @@
 class CommentsController < ApplicationController
   before_action :find_post
   before_action :require_login, only: %i[create edit update destroy]
-  before_action :find_comment, only: %i[show edit update]
+  before_action :find_comment, only: [:show,
+                                      :destroy,
+                                      :edit,
+                                      :update,
+                                      :vote,
+                                      :downvote]
   before_action :owner, only: %i[edit update destroy]
+
+
 
   def create
     @comment = @post.comments.create(comment_params)
@@ -40,6 +47,21 @@ class CommentsController < ApplicationController
       # add smth instead
     end
   end
+
+  def vote
+    @comment.upvote_from current_user
+    respond_to do |format|
+      format.html { redirect_to @post}
+    end
+  end
+
+  def downvote
+    @comment.downvote_from current_user
+    respond_to do |format|
+      format.html { redirect_to @post }
+    end
+  end
+
 
   private
 

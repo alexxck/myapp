@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   root 'posts#index' # set start page localhost:3000
   get 'posts', to: 'posts#index'
   resources :posts do
-    resources :comments
+    resources :comments do
+      member do
+        put 'like', to: 'comments#vote'
+        put 'unlike', to: 'comments#downvote'
+      end
+    end
   end
   resources :authors
   resources :sessions, only: %i[new create destroy]

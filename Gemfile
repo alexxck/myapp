@@ -62,3 +62,4 @@ gem 'font-awesome-sass', '~> 5.11.2'
 gem 'impressionist', '~> 1.5', '>= 1.5.1'
 gem 'jquery-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'acts_as_votable'
