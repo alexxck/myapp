@@ -10,7 +10,7 @@
       <%= link_to like_post_comment_path(comment.post, comment),class: 'like btn btn-success btn-sm', method: :put do %>
         +<span id="upvote_comment_<%= comment.id%>" aria-hidden="true"><%= comment.get_upvotes.size %></span>
       <% end %>
-
+      <%= (comment.get_upvotes.size)-(comment.get_downvotes.size) %>
       <%= link_to unlike_post_comment_path(comment.post, comment), class: 'unlike btn btn-danger btn-sm', method: :put do %>
         -<span id="downvote_comment_<%= comment.id%>" aria-hidden="true"><%= comment.get_downvotes.size %></span>
       <% end %>
