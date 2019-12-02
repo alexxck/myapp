@@ -1,11 +1,11 @@
 <div class="card">
-<p><i class="fas fa-pen-square"></i> Author: <%= comment.author.full_name %></p>
-<p><i class="far fa-comment"></i> Comment: <%= comment.body %></p>
-<p><i class="far fa-clock"></i> Time ago: <%= distance_of_time_in_words(comment.created_at, Time.now, include_seconds: false) %></p>
+  <p><i class="fas fa-pen-square"></i> Author: <%= comment.author.full_name %></p>
+  <p><i class="far fa-comment"></i> Comment: <%= comment.body %></p>
+  <p><i class="far fa-clock"></i> Time ago: <%= distance_of_time_in_words(comment.created_at, Time.now, include_seconds: false) %></p>
   <% if updated(comment) %>
     <em> edited!</em>
   <% end  %>
-<p><% if current_user %>
+  <p><% if current_user %>
     <div>
       <%= link_to like_post_comment_path(comment.post, comment),class: 'like btn btn-success btn-sm', method: :put do %>
         +<span id="upvote_comment_<%= comment.id%>" aria-hidden="true"><%= comment.get_upvotes.size %></span>
@@ -15,13 +15,14 @@
         -<span id="downvote_comment_<%= comment.id%>" aria-hidden="true"><%= comment.get_downvotes.size %></span>
       <% end %>
     </div>
-    <% if check_comment_rights(@current_user,comment) %></p>
-      <%= link_to "Edit", edit_post_comment_path(comment.post, comment), class:'btn btn-sm btn-outline-success'%>
-      <%= link_to 'Destroy Comment', [comment.post, comment],
-                  method: :delete,
-                  data: { confirm: 'Are you sure?' }, class:'btn btn-sm btn-outline-danger' %>
-    <% end %>
+    <p><% if check_comment_rights(@current_user,comment) %></p>
+        <span><%= link_to "Reply", new_post_comment_path(comment.post, :parent_id => comment.id), class:'btn btn-outline-warning btn-sm' %>
+          <%= link_to "Edit", edit_post_comment_path(comment.post, comment), class:'btn btn-sm btn-outline-success'%>
+          <%= link_to 'Delete', [comment.post, comment],
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' }, class:'btn btn-sm btn-outline-danger' %>
+        </span>
+      <% end %>
   <% end %>
 </div>
-
 

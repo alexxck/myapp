@@ -11,8 +11,6 @@ class CommentsController < ApplicationController
                                       :downvote]
   before_action :owner, only: %i[edit update destroy]
 
-
-
   def create
     @comment = @post.comments.create(comment_params)
     @comment.author_id = current_user.id
@@ -62,6 +60,13 @@ class CommentsController < ApplicationController
     end
   end
 
+  def index
+    @post.comments = @post.comments.arrange(order: :created_at)
+  end
+
+  def new
+    @comment = Comment.new(parent_id: params[:parent_id])
+  end
 
   private
 
@@ -82,6 +87,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:body, :author_id, :post_id)
+    params.require(:comment).permit(:body, :author_id, :post_id, :parent_id)
   end
 end

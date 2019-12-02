@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-
+  <%= form.hidden_field :parent_id %>
   <p>
     <%= form.label :body %><br>
     <%= form.text_area :body, class:'form-control' %>
