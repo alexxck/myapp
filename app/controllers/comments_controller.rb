@@ -3,12 +3,12 @@
 class CommentsController < ApplicationController
   before_action :find_post
   before_action :require_login, only: %i[create edit update destroy]
-  before_action :find_comment, only: [:show,
-                                      :destroy,
-                                      :edit,
-                                      :update,
-                                      :vote,
-                                      :downvote]
+  before_action :find_comment, only: %i[show
+                                        destroy
+                                        edit
+                                        update
+                                        vote
+                                        downvote]
   before_action :owner, only: %i[edit update destroy]
 
   def create
@@ -54,7 +54,7 @@ class CommentsController < ApplicationController
   def vote
     @comment.upvote_from current_user
     respond_to do |format|
-      format.html { redirect_to @post}
+      format.html { redirect_to @post }
     end
   end
 
