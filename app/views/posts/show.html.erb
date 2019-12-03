@@ -35,7 +35,6 @@
   <p><i class="far fa-eye"></i> Views: <%= @post.impressionist_count %></p>
 <br>
 <h2><%= @post.comments.count %> Comments</h2>
-  <%= render @post.comments %>
   <%= nested_comments @post.comments.arrange(order: :created_at) %>
   <h3>Add a Comments:</h3>
   <%= render 'comments/form' %>
