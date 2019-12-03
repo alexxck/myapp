@@ -1,8 +1,17 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :banned?
   before_action :unloged
+
+  def banned?
+    if current_user.present?
+      if current_user.banned == true
+        redirect_back(fallback_location: root_path)
+        flash[:danger] = "You are banned☹️"
+      end
+    end
+  end
 
   def current_user
     if session[:author_id]

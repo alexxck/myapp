@@ -20,10 +20,5 @@ Rails.application.routes.draw do
   get '/signup', to: 'authors#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-
-  # get 'authors/first_name:string'
-  # get 'authors/last_name:string'
-  # get 'authors/gender:string'
-  # get 'authors/birthday:date'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
