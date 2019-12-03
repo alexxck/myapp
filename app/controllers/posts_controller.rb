@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   before_action :require_login, only: %i[create edit update destroy]
   before_action :owner, only: %i[edit update destroy]
-  before_action :banned?, only: [:new, :create, :update]
+  before_action :banned?, only: %i[new create update]
   impressionist actions: [:show]
 
   # GET /posts

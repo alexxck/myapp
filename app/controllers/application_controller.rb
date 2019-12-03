@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     if current_user.present?
       if current_user.banned == true
         redirect_back(fallback_location: root_path)
-        flash[:danger] = "You are banned☹️"
+        flash[:danger] = 'You are banned☹️'
       end
     end
   end

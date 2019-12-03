@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :banned?, only: [:new, :create]
+  before_action :banned?, only: %i[new create]
   before_action :find_post
   before_action :require_login, only: %i[create edit update destroy]
   before_action :find_comment, only: %i[show
