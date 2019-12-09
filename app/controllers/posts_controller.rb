@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'will_paginate/array'
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   before_action :require_login, only: %i[create edit update destroy]
@@ -15,6 +15,12 @@ class PostsController < ApplicationController
              else
                Post.all.order('created_at DESC')
              end
+      #@posts = Post.paginate(page: params[:page])
+    @posts = []
+    Post.all.each do |post|
+      @posts.push(post)
+    end
+    @posts = @posts.paginate(page: params[:page], per_page: 8)
   end
 
   def show

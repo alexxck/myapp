@@ -28,9 +28,7 @@
     <% end %>
   </tbody>
 </table>
-
+  <%= will_paginate(@posts) %>
 <br>
-
 <%= link_to 'New Post', new_post_path, :class => "btn btn-primary", :style => 'margin-bottom: 50px' %>
-
 </div>
