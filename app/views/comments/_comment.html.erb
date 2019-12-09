@@ -1,4 +1,4 @@
-<div class="card">
+<div class="comment<%= comment.id %>">
   <p><i class="fas fa-pen-square"></i> Author: <%= comment.author.full_name %>
   <i class="far fa-clock"></i> Time ago: <%= distance_of_time_in_words(comment.created_at, Time.now, include_seconds: false) %><br>
     <i class="far fa-comment"></i> Comment: <%= comment.body %></p>
@@ -16,9 +16,9 @@
       <% end %>
     </span>
     <% if check_comment_rights(@current_user,comment) %>
-        <span><%= link_to "Reply", new_post_comment_path(comment.post, :parent_id => comment.id), class:'btn btn-outline-warning btn-sm' %>
+        <span><%= link_to "Reply", new_post_comment_path(comment.post, :parent_id => comment.id), id: 'comment_reply_link', remote: true, class:'btn btn-outline-warning btn-sm' %>
           <%= link_to "Edit", edit_post_comment_path(comment.post, comment), class:'btn btn-sm btn-outline-success'%>
-          <%= link_to 'Delete', [comment.post, comment],
+          <%= link_to 'Delete', [comment.post, comment], remote: true,
                       method: :delete,
                       data: { confirm: 'Are you sure?' }, class:'btn btn-sm btn-outline-danger' %>
         </span>

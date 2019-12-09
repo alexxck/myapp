@@ -5,5 +5,5 @@ class Comment < ApplicationRecord
   belongs_to :post
   belongs_to :author
   validates :body, presence: true, length: { minimum: 3 }
-  has_ancestry
+  has_ancestry orphan_strategy: :adopt
 end

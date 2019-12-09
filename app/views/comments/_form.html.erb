@@ -1,5 +1,5 @@
 <div class="container">
-  <%= form_for([@post, @post.comments.build]) do |f| %>
+  <%= form_for ([@post, @post.comments.build]), remote: true do |f| %>
     <% if session[:author_id] != current_user %>
       <%= f.hidden_field :parent_id %>
       <p>
