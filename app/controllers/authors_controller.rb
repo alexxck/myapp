@@ -19,9 +19,14 @@ class AuthorsController < ApplicationController
 
     respond_to do |format|
       if @author.save
+        @author.set_confirmation_token
+        @author.save(validate: false)
+        AuthorMailer.registration_confirmation(@author).deliver_now
+        flash[:success] = "Please confirm your email address to continue"
         format.html { redirect_to login_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @author }
       else
+        flash[:error] = "Invalid, please try again"
         format.html { render :new }
         format.json { render json: @author.errors, status: :unprocessable_entity }
       end
@@ -48,6 +53,17 @@ class AuthorsController < ApplicationController
     end
   end
 
+  def confirm_email
+    author = Author.find_by_confirm_token(params[:token])
+    if author
+      author.validate_email
+      author.save(validate: false)
+      redirect_to author
+    else
+      flash[:error] = "Sorry. User does not exist"
+      redirect_to root_url
+    end
+  end
   private
 
   def set_author
