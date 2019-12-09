@@ -1,3 +1,4 @@
+<div class="card">
 <div class="comment<%= comment.id %>">
   <p><i class="fas fa-pen-square"></i> Author: <%= comment.author.full_name %>
   <i class="far fa-clock"></i> Time ago: <%= distance_of_time_in_words(comment.created_at, Time.now, include_seconds: false) %><br>
@@ -7,11 +8,11 @@
   <% end  %>
   <p><% if current_user %>
     <span>
-      <%= link_to like_post_comment_path(comment.post, comment),class: 'like btn btn-success btn-sm', method: :put do %>
+      <%= link_to like_post_comment_path(comment.post, comment), remote: true, class: 'like btn btn-success btn-sm', method: :put do %>
         +<span id="upvote_comment_<%= comment.id%>" aria-hidden="true"><%= comment.get_upvotes.size %></span>
       <% end %>
       <%= (comment.get_upvotes.size)-(comment.get_downvotes.size) %>
-      <%= link_to unlike_post_comment_path(comment.post, comment), class: 'unlike btn btn-danger btn-sm', method: :put do %>
+      <%= link_to unlike_post_comment_path(comment.post, comment), remote: true, class: 'unlike btn btn-danger btn-sm', method: :put do %>
         -<span id="downvote_comment_<%= comment.id%>" aria-hidden="true"><%= comment.get_downvotes.size %></span>
       <% end %>
     </span>
@@ -24,5 +25,6 @@
         </span>
       <% end %>
   <% end %>
+</div>
 </div>
 

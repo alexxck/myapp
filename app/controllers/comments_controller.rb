@@ -34,11 +34,17 @@ class CommentsController < ApplicationController
   def edit; end
 
   def update
-    if @comment.update(comment_params)
-      format.js { render 'update', status: :created, location: @post }
-      format.html { redirect_to @post, notice: 'Comment was successfully updated.' }
-    else
-      render 'edit'
+    @comment = Comment.find(params[:id])
+    @post = Post.find(params[:post_id])
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.js {render 'update', status: :created, location: @post}
+        format.html { redirect_to @post, notice: 'Comment was successfully updated.' }
+        format.json { render :show, status: :ok, location: @post }
+      else
+        format.html { render :edit }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
   end
 
