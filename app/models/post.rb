@@ -14,5 +14,4 @@ class Post < ApplicationRecord
     where('title LIKE ?', "%#{search}%")
     where('content LIKE ?', "%#{search}%")
   end
-
 end

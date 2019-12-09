@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     if @comment.ancestors.count <= 4
       respond_to do |format|
         if @comment.save
-          format.js {render 'create', status: :created, location: @post}
+          format.js { render 'create', status: :created, location: @post }
           format.html { redirect_to @post, notice: 'Comment was successfully created.' }
         else
           format.html { redirect_to @post, alert: @comment.errors.full_messages.first }
@@ -38,7 +38,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     respond_to do |format|
       if @comment.update(comment_params)
-        format.js {render 'update', status: :created, location: @post}
+        format.js { render 'update', status: :created, location: @post }
         format.html { redirect_to @post, notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -53,7 +53,7 @@ class CommentsController < ApplicationController
     if (@current_user.id == @comment.author_id) || (@current_user.admin == true)
       @comment.destroy
       respond_to do |format|
-        format.js {render 'destroy', status: :created, location: @post}
+        format.js { render 'destroy', status: :created, location: @post }
         format.html { redirect_to @post, notice: 'Comment was successfully destroyed.' }
       end
     else
