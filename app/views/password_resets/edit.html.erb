@@ -1,0 +1,23 @@
+<div class="container">
+  <%= form_for @author, :url => password_reset_path(params[:id]) do |f| %>
+    <% if @author.errors.any? %>
+      <div class="alert alert-danger">
+        <h2>Form is invalid</h2>
+        <ul>
+          <% for message in @author.errors.full_messages %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password, class:'form-control' %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class:'form-control' %>
+    </div>
+    <%= f.submit class:'btn btn-info' %>
+  <% end %>
+</div>

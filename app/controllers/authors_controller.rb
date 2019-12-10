@@ -54,7 +54,7 @@ class AuthorsController < ApplicationController
   end
 
   def confirm_email
-    @author = Author.find_by_confirm_token(params[:id])
+    @author = Author.find_by_confirm_token(params[:id]) # may be params[:token]?
     if @author
       @author.validate_email
       author.save(validate: false)

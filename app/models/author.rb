@@ -8,6 +8,7 @@ class Author < ApplicationRecord
   before_save { self.email = email.downcase }
   before_create :set_confirmation_token
 
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
   PASSWORD_FORMAT = /\A
@@ -29,12 +30,20 @@ class Author < ApplicationRecord
     end
   end
 
+  def send_password_reset
+    set_confirmation_token
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    AuthorMailer.password_reset(self).deliver!
+  end
+
+
   private
 
   def validate_email
     self.email_confirmed = true
     self.confirm_token = nil
-      # save!(validate: false )
+    save!(validate: false )
   end
 
 

@@ -7,4 +7,9 @@ class AuthorMailer < ApplicationMailer
     @author = author
     mail to: author.email, subject: "Registration Confirmation on myapp blog"
   end
+
+  def password_reset(author)
+    @author = author
+    mail to: author.email, subject: "Password Reset for myapp blog"
+  end
 end
