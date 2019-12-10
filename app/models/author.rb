@@ -6,6 +6,7 @@ class Author < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   before_save { self.email = email.downcase }
+  before_create :set_confirmation_token
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
@@ -27,11 +28,13 @@ class Author < ApplicationRecord
       self.confirm_token = SecureRandom.urlsafe_base64.to_s
     end
   end
+
   private
 
   def validate_email
     self.email_confirmed = true
     self.confirm_token = nil
+      # save!(validate: false )
   end
 
 

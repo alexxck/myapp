@@ -54,9 +54,9 @@ class AuthorsController < ApplicationController
   end
 
   def confirm_email
-    author = Author.find_by_confirm_token(params[:token])
-    if author
-      author.validate_email
+    @author = Author.find_by_confirm_token(params[:id])
+    if @author
+      @author.validate_email
       author.save(validate: false)
       redirect_to author
     else
@@ -71,6 +71,7 @@ class AuthorsController < ApplicationController
   end
 
   def author_params
-    params.require(:author).permit(:email, :password, :password_confirmation, :first_name, :last_name)
+    params.require(:author).permit(:email, :password, :password_confirmation, :first_name, :last_name,)
   end
+
 end
