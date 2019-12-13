@@ -3,3 +3,4 @@ Hi <%= @author.full_name %>,
 Thanks for registering! To confirm your registration click the URL below.
 
 <%=  link_to "confirm", confirm_email_author_url(@author.confirm_token, host: "http://localhost:3000")%>
+<%=  link_to "confirm", confirm_email_author_url(@author.confirm_token, host: "https://warm-cove-61270.herokuapp.com")%>
