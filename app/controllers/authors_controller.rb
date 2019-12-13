@@ -19,7 +19,7 @@ class AuthorsController < ApplicationController
 
     respond_to do |format|
       if @author.save
-        @author.set_confirmation_token
+        @author.confirmation_token
         @author.save(validate: false)
         AuthorMailer.registration_confirmation(@author).deliver_now
         flash[:success] = "Please confirm your email address to continue"
@@ -54,9 +54,9 @@ class AuthorsController < ApplicationController
   end
 
   def confirm_email
-    @author = Author.find_by_confirm_token(params[:id]) # may be params[:token]?
-    if @author
-      @author.validate_email
+    author = Author.find_by_confirm_token(params[:id]) # may be params[:token]?
+    if author
+      author.email_activate
       author.save(validate: false)
       redirect_to author
     else
@@ -64,6 +64,7 @@ class AuthorsController < ApplicationController
       redirect_to root_url
     end
   end
+
   private
 
   def set_author

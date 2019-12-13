@@ -15,12 +15,15 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :authors
+  resources :authors do
+    member do
+      get :confirm_email
+    end
+  end
   resources :sessions, only: %i[new create destroy]
   get '/signup', to: 'authors#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-  get '/:token/confirm_email/', :to => "authors#confirm_email", as: 'confirm_email'
   get 'password_resets/new'
   resources :password_resets
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

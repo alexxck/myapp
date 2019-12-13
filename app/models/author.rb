@@ -6,7 +6,7 @@ class Author < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   before_save { self.email = email.downcase }
-  before_create :set_confirmation_token
+  before_create :confirmation_token
 
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
@@ -24,27 +24,27 @@ class Author < ApplicationRecord
     "#{first_name.capitalize} #{last_name.capitalize}"
   end
 
-  def set_confirmation_token
-    if self.confirm_token.blank?
-      self.confirm_token = SecureRandom.urlsafe_base64.to_s
-    end
-  end
-
   def send_password_reset
-    set_confirmation_token
+    confirmation_token
     self.password_reset_sent_at = Time.zone.now
     save!
     AuthorMailer.password_reset(self).deliver!
   end
 
+  def confirmation_token
+    if self.confirm_token.blank?
+      self.confirm_token = SecureRandom.urlsafe_base64.to_s
+    end
+  end
 
-  private
-
-  def validate_email
+  def email_activate
     self.email_confirmed = true
     self.confirm_token = nil
     save!(validate: false )
   end
+
+  private
+
 
 
 end
