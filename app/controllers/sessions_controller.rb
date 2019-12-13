@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     author = Author.find_by_email(params[:email].downcase)
-    if author && author.authenticate(params[:password])
+    if author&.authenticate(params[:password])
       if author.email_confirmed
         login_in author
         redirect_back author

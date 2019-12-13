@@ -22,11 +22,11 @@ class AuthorsController < ApplicationController
         @author.confirmation_token
         @author.save(validate: false)
         AuthorMailer.registration_confirmation(@author).deliver_now
-        flash[:success] = "Please confirm your email address to continue"
+        flash[:success] = 'Please confirm your email address to continue'
         format.html { redirect_to login_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @author }
       else
-        flash[:error] = "Invalid, please try again"
+        flash[:error] = 'Invalid, please try again'
         format.html { render :new }
         format.json { render json: @author.errors, status: :unprocessable_entity }
       end
@@ -60,7 +60,7 @@ class AuthorsController < ApplicationController
       author.save(validate: false)
       redirect_to author
     else
-      flash[:error] = "Sorry. User does not exist"
+      flash[:error] = 'Sorry. User does not exist'
       redirect_to root_url
     end
   end
@@ -72,7 +72,6 @@ class AuthorsController < ApplicationController
   end
 
   def author_params
-    params.require(:author).permit(:email, :password, :password_confirmation, :first_name, :last_name,)
+    params.require(:author).permit(:email, :password, :password_confirmation, :first_name, :last_name)
   end
-
 end
