@@ -13,7 +13,8 @@ class CommentsController < ApplicationController
   before_action :owner, only: %i[edit update destroy]
 
   def create
-    @comment = @post.comments.create(comment_params)
+    @comment = @post.comments.new(comment_params)
+    # build then if/else
     @comment.author_id = current_user.id
     if @comment.ancestors.count <= 4
       respond_to do |format|
@@ -40,10 +41,8 @@ class CommentsController < ApplicationController
       if @comment.update(comment_params)
         format.js { render 'update', status: :created, location: @post }
         format.html { redirect_to @post, notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end

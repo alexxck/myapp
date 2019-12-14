@@ -30,7 +30,9 @@
     <%= link_to(image_tag(@post.image.url, alt: 'Image'), @post.image.url, target: '_blank') if @post.image? %>
   </div>
   <h2><%= @post.comments.count %> Comments</h2>
-  <%= nested_comments @post.comments.arrange(order: :created_at) %>
+  <div id="comments">
+    <%= nested_comments @post.comments.arrange(order: :created_at) %>
+  </div>
   <h3>Add a Comments:</h3>
   <%= render 'comments/form' %>
 </div>
