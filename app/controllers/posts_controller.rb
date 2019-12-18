@@ -53,7 +53,6 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.update_attributes(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-
       else
         format.html { render :edit }
       end
