@@ -24,11 +24,9 @@ class AuthorsController < ApplicationController
         AuthorMailer.registration_confirmation(@author).deliver_now
         flash[:success] = 'Please confirm your email address to continue'
         format.html { redirect_to login_path, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @author }
       else
         flash[:error] = 'Invalid, please try again'
         format.html { render :new }
-        format.json { render json: @author.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -37,10 +35,8 @@ class AuthorsController < ApplicationController
     respond_to do |format|
       if @author.update(author_params)
         format.html { redirect_to @author, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @author }
       else
         format.html { render :edit }
-        format.json { render json: @author.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -49,7 +45,6 @@ class AuthorsController < ApplicationController
     @author.destroy
     respond_to do |format|
       format.html { redirect_to author_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
