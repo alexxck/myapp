@@ -71,22 +71,19 @@ input {
 }
 
 
-a {
-  text-decoration: none;
-  &:hover {
-    color: darkblue;
-    text-decoration: none
-  }
-}
-
-.sidebar_container {
-  align: left;
-  width: 4px;
-}
 div{
   padding:5px;
-
 }
 div.card {
   background-color: mintcream;
+  padding: 3px;
+  margin: 10px;
+}
+
+.link_color:hover{
+  background: transparent;
+  color: limegreen !important;
+}
+.link_color {
+  color: black !important;
 }
