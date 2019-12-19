@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>RoR blog (myapp)</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  </head>
-
-  <body>
-  <!-- <% if pop_up and current_user == nil %>
+<body>
+    <!-- <% if pop_up and current_user == nil %>
     <script> alert('You are not logged in. Please signup or login. ');</script>
   <% end %> -->
-
-  <%= render 'layouts/navigation' %>
-
+    <%= render 'layouts/navigation' %>
     <div class="container">
-      <h1 class="lead">Hello, Rails blog!</h1>
-      <%= yield %>
+        <h1 class="lead">Hello, Rails blog!</h1>
+        <%= yield %>
     </div>
+</body>
 
-  </body>
 </html>

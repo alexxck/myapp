@@ -1,45 +1,46 @@
 <div class="card">
-
-  <p class="text-dark" id="notice"><%= notice %></p>
-
-  <p class="text-dark">
-    <i class="fas fa-pen-square"></i>
-    <strong>Author:</strong>
-    <%= @post.author.full_name %>
-    <i class="far fa-clock"></i>
-    <time>
-      Date: <%= @post.created_at.to_date.strftime("%d %B %Y") %>
-      Time ago: <%= distance_of_time_in_words(@post.created_at, Time.now) %>
-    </time>
-    <i class="far fa-eye"></i> Views: <%= @post.impressionist_count %>
-  </p>
-
-  <p class="text-dark">
-    <i class="fab fa-tumblr"></i>
-    <strong>Title:</strong>
-    <%= @post.title %>
-  </p>
-
-  <p class="text-dark">
-    <i class="far fa-sticky-note"></i>
-    <strong>Content:</strong>
-    <%= @post.content %>
-  </p>
-
-  <div>
-    <%= link_to(image_tag(@post.image.url, alt: 'Image'), @post.image.url, target: '_blank') if @post.image? %>
-  </div>
-  <em><%= @post.comments.count %> Comments</em>
-  <div id="comments">
-    <%= nested_comments @post.comments.arrange(order: :created_at) %>
-  </div>
-  <strong>Add a Comments:</strong>
-  <%= render 'comments/form' %>
+    <p class="text-dark" id="notice">
+        <%= notice %>
+    </p>
+    <p class="text-dark">
+        <i class="fas fa-pen-square"></i>
+        <strong>Author:</strong>
+        <%= @post.author.full_name %>
+        <i class="far fa-clock"></i>
+        <time>
+            Date:
+            <%= @post.created_at.to_date.strftime("%d %B %Y") %>
+            Time ago:
+            <%= distance_of_time_in_words(@post.created_at, Time.now) %>
+        </time>
+        <i class="far fa-eye"></i> Views:
+        <%= @post.impressionist_count %>
+    </p>
+    <p class="text-dark">
+        <i class="fab fa-tumblr"></i>
+        <strong>Title:</strong>
+        <%= @post.title %>
+    </p>
+    <p class="text-dark">
+        <i class="far fa-sticky-note"></i>
+        <strong>Content:</strong>
+        <%= @post.content %>
+    </p>
+    <div>
+        <%= link_to(image_tag(@post.image.url, alt: 'Image'), @post.image.url, target: '_blank') if @post.image? %>
+    </div>
+    <em>
+        <%= @post.comments.count %> Comments</em>
+    <div id="comments">
+        <%= nested_comments @post.comments.arrange(order: :created_at) %>
+    </div>
+    <strong>Add a Comments:</strong>
+    <%= render 'comments/form' %>
 </div>
 <br>
 <% if current_user %>
-  <% if @post.author_id == @current_user.id %>
-    <%= link_to 'Edit', edit_post_path(@post), :class => "btn btn-outline-primary"%> |
-  <% end %>
+<% if @post.author_id == @current_user.id %>
+<%= link_to 'Edit', edit_post_path(@post), :class => "btn btn-outline-primary"%> |
+<% end %>
 <% end %>
 <%= link_to 'Back', posts_path, :class => "btn btn-outline-primary" %>

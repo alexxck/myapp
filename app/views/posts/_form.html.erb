@@ -1,38 +1,35 @@
 <%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
+<% if post.errors.any? %>
+<div id="error_explanation">
+    <h2>
+        <%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+    <ul>
         <% post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+        <li>
+            <%= message %>
+        </li>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="form-group">
-
+    </ul>
+</div>
+<% end %>
+<div class="form-group">
     <div class="field">
-      <i class="fab fa-tumblr"></i>
-      <%= form.label :title %>
-      <%= form.text_field :title %>
+        <i class="fab fa-tumblr"></i>
+        <%= form.label :title %>
+        <%= form.text_field :title %>
     </div>
-
     <div class="control-group">
-      <i class="far fa-sticky-note"></i>
-      <%= form.label :content %>
-      <%= form.text_area :content %>
+        <i class="far fa-sticky-note"></i>
+        <%= form.label :content %>
+        <%= form.text_area :content %>
     </div>
-
     <div class="field">
-      <i class="far fa-image"></i>
-      <%= form.label :image %>
-      <%= form.file_field :image %>
+        <i class="far fa-image"></i>
+        <%= form.label :image %>
+        <%= form.file_field :image %>
     </div>
-
     <div class="actions">
-      <%= form.submit({:class => 'btn btn-outline-success'}) %>
+        <%= form.submit({:class => 'btn btn-outline-success'}) %>
     </div>
-
-  </div>
+</div>
 <% end %>

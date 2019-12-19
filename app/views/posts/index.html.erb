@@ -1,31 +1,39 @@
 <div class="section">
-  <p id="notice"><%= notice %></p>
-  <h1 class="lead center">Posts</h1>
-  <% @posts.each do |post| %>
+    <p id="notice">
+        <%= notice %>
+    </p>
+    <h1 class="lead center">Posts</h1>
+    <% @posts.each do |post| %>
     <div class="card">
-      <div class="card-content">
-        <div class="media">
-          <h4><i class="fab fa-tumblr"></i> <%= link_to post.title, post, class: 'link_color' %></h4><br>
+        <div class="card-content">
+            <div class="media">
+                <h4><i class="fab fa-tumblr"></i>
+                    <%= link_to post.title, post, class: 'link_color' %>
+                </h4><br>
+            </div>
+            <div><i class="fas fa-pen-square"></i> Author:
+                <%= post.author.full_name %>
+            </div>
+            <div class="content"><i class="far fa-sticky-note"></i> Content:<br>
+                <%= post.content %>
+            </div>
+            <br>
+            <span>
+                <%= link_to 'Show', post, class: "btn btn-outline-primary" %>
+                <%= link_to 'Edit', edit_post_path(post), :class => "btn btn-outline-primary" %>
+                <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-outline-primary" %>
+                <small><i class="far fa-comment"> </i>
+                    <%= post.comments.count %> comments
+                    <i class="far fa-eye"></i>
+                    <%= post.impressionist_count %> views</small>
+            </span>
         </div>
-        <div><i class="fas fa-pen-square"></i> Author: <%= post.author.full_name %></div>
-        <div class="content"><i class="far fa-sticky-note"></i> Content:<br>
-          <%= post.content %>
-        </div>
-        <br>
-        <span>
-          <%= link_to 'Show', post, class: "btn btn-outline-primary" %>
-          <%= link_to 'Edit', edit_post_path(post), :class => "btn btn-outline-primary" %>
-          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-outline-primary" %>
-          <small><i class="far fa-comment">  </i> <%= post.comments.count %> comments
-          <i class="far fa-eye"></i>   <%= post.impressionist_count %> views</small>
-        </span>
-      </div>
     </div>
-  <% end %>
+    <% end %>
 </div>
 <div>
-<% if current_user %>
-  <%= link_to 'New Post', new_post_path, :class => "btn btn-outline-success", :style => 'margin-bottom: 50px' %>
-<% end %>
-<%= will_paginate(@posts) %>
+    <% if current_user %>
+    <%= link_to 'New Post', new_post_path, :class => "btn btn-outline-success", :style => 'margin-bottom: 50px' %>
+    <% end %>
+    <%= will_paginate(@posts) %>
 </div>

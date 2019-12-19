@@ -1,9 +1,7 @@
 <div class="container">
-<h1 class="badge badge-secondary">New Post</h1>
-
-<div class="input-group-text">
-<%= render 'form', post: @post, :class=> "input-group flex-nowrap" %>
-</div>
-
-<%= link_to 'Back', posts_path, :class => "btn btn-primary" %>
+    <h1 class="badge badge-secondary">New Post</h1>
+    <div class="input-group-text">
+        <%= render 'form', post: @post, :class=> "input-group flex-nowrap" %>
+    </div>
+    <%= link_to 'Back', posts_path, :class => "btn btn-primary" %>
 </div>
