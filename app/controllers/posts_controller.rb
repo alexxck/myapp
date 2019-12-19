@@ -10,18 +10,11 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.all.order('created_at DESC')
     @posts = if params[:search]
-               Post.search(params[:search]).order('created_at DESC')
+               Post.search(params[:search]).order('created_at DESC').paginate(page: params[:page], per_page: 8)
              else
-               Post.all.order('created_at DESC')
+               Post.all.order('created_at DESC').paginate(page: params[:page], per_page: 8)
              end
-    # @posts = Post.paginate(page: params[:page])
-    @posts = []
-    Post.all.each do |post|
-      @posts.push(post)
-    end
-    @posts = @posts.paginate(page: params[:page], per_page: 8)
   end
 
   def show
@@ -38,14 +31,17 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    @post = current_user.posts.build(post_params)
-
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-      else
-        format.html { render :new }
+    if (!@current_user.banned?) && (@current_user.email_confirmed?)
+      @post = current_user.posts.build(post_params)
+      respond_to do |format|
+        if @post.save
+          format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        else
+          format.html { render :new }
+        end
       end
+    else
+      redirect_to root_path, notice: 'You dont have rights'
     end
   end
 
@@ -61,9 +57,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-    end
+      redirect_to posts_url, notice: 'Post was successfully destroyed.'
   end
 
   private
@@ -74,7 +68,7 @@ class PostsController < ApplicationController
   end
 
   def owner
-    if (@post.author_id == @current_user.id) || (@current_user.admin == true)
+    if @post.author_id == @current_user.id
     else
       redirect_to login_path
       # add some flash mess instead, dont forget

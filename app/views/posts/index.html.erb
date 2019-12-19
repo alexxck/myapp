@@ -16,8 +16,8 @@
           <%= link_to 'Show', post, class: "btn btn-outline-primary" %>
           <%= link_to 'Edit', edit_post_path(post), :class => "btn btn-outline-primary" %>
           <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-outline-primary" %>
-          <i class="far fa-comment"></i>   <%= post.comments.count %> comments
-          <i class="far fa-eye"></i>   <%= post.impressionist_count %> Views
+          <small><i class="far fa-comment">  </i> <%= post.comments.count %> comments
+          <i class="far fa-eye"></i>   <%= post.impressionist_count %> views</small>
         </span>
       </div>
     </div>
