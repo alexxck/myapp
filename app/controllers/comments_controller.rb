@@ -49,7 +49,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = @post.comments.find(params[:id])
-    if (@current_user.id == @comment.author_id) || (@current_user.admin == true)
+    if @current_user.id == @comment.author_id
       @comment.destroy
       respond_to do |format|
         format.js { render 'destroy', status: :created, location: @post }
@@ -85,7 +85,7 @@ class CommentsController < ApplicationController
   private
 
   def owner
-    if (@comment.author_id == @current_user.id) || (@current_user.admin == true)
+    if @comment.author_id == @current_user.id
     else
       redirect_to login_path
       # add some flash mess instead, dont forget

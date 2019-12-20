@@ -31,7 +31,7 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    if (!@current_user.banned?) && (@current_user.email_confirmed?)
+    if !@current_user.banned? && @current_user.email_confirmed?
       @post = current_user.posts.build(post_params)
       respond_to do |format|
         if @post.save
@@ -57,7 +57,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-      redirect_to posts_url, notice: 'Post was successfully destroyed.'
+    redirect_to posts_url, notice: 'Post was successfully destroyed.'
   end
 
   private
